@@ -1,5 +1,6 @@
-import { Schema, type Document } from 'mongoose';
+import { Schema, type Document } from "mongoose";
 
+// Define the interface for BookDocument
 export interface BookDocument extends Document {
   bookId: string;
   title: string;
@@ -9,8 +10,8 @@ export interface BookDocument extends Document {
   link: string;
 }
 
-// This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedBooks` array in User.js
-const bookSchema = new Schema<BookDocument>({
+// This is a subdocument schema for the `savedBooks` array in User.js
+const Book = new Schema<BookDocument>({
   authors: [
     {
       type: String,
@@ -37,4 +38,5 @@ const bookSchema = new Schema<BookDocument>({
   },
 });
 
-export default bookSchema;
+// Export only the bookSchema (no need to create a model here)
+export default Book;
